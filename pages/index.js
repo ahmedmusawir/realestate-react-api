@@ -10,32 +10,33 @@ const Banner = ({
   title1,
   title2,
   desc1,
-  desc2,
   buttonText,
   linkName,
   imageUrl,
 }) => (
-  <Flex flexWrap='wrap' justifyContent='center' alignItems='center' m='10'>
-    <Image src={imageUrl} width={500} height={300} alt='banner' />
-    <Box p='5'>
-      <Text color='gray.500' fontSize='sm' fontWeight='medium'>
-        {purpose}
-      </Text>
-      <Text fontSize='3xl' fontWeight='bold'>
-        {title1}
-        <br />
-        {title2}
-      </Text>
-      <Text fontSize='lg' paddingTop='3' paddingBottom='3' color='gray.700'>
-        {desc1}
-      </Text>
-      <Button fontSize='xl'>
-        <Link href={linkName}>
-          <a className='linkStyle'>{buttonText}</a>
-        </Link>
-      </Button>
-    </Box>
-  </Flex>
+  <Box p='5' bg='#4299e1' mb='10'>
+    <Flex flexWrap='wrap' justifyContent='center' alignItems='center' m='10'>
+      <Image src={imageUrl} width={500} height={300} alt='banner' />
+      <Box p='5'>
+        <Text color='white' fontSize='sm' fontWeight='medium'>
+          {purpose}
+        </Text>
+        <Text fontSize='3xl' fontWeight='bold' color='white'>
+          {title1}
+          <br />
+          {title2}
+        </Text>
+        <Text fontSize='lg' paddingTop='3' paddingBottom='3' color='white'>
+          {desc1}
+        </Text>
+        <Button fontSize='xl'>
+          <Link href={linkName}>
+            <a className='linkStyle'>{buttonText}</a>
+          </Link>
+        </Button>
+      </Box>
+    </Flex>
+  </Box>
 );
 
 const Home = ({ propertiesForRent, propertiesForSale }) => {
@@ -54,7 +55,7 @@ const Home = ({ propertiesForRent, propertiesForSale }) => {
         imageUrl='https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4'
       />
       <Flex flexWrap='wrap'>
-        {propertiesForRent.map((property) => (
+        {propertiesForRent?.map((property) => (
           <Property property={property} key={property.id} />
         ))}
       </Flex>
@@ -68,7 +69,11 @@ const Home = ({ propertiesForRent, propertiesForSale }) => {
         linkName='/search?purpose=for-sale'
         imageUrl='https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008'
       />
-      <Flex flexWrap='wrap'>{/* FETCH DATA */}</Flex>
+      <Flex flexWrap='wrap'>
+        {propertiesForSale?.map((property) => (
+          <Property property={property} key={property.id} />
+        ))}
+      </Flex>
     </Box>
   );
 };
