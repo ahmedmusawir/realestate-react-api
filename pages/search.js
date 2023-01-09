@@ -17,7 +17,6 @@ const Search = ({ properties }) => {
     <Box>
       <Flex
         cursor='pointer'
-        // bg='gray.100'
         bg='#4299e1'
         borderBottom='1px'
         borderColor='gray.200'
@@ -73,8 +72,9 @@ export async function getServerSideProps({ query }) {
   const categoryExternalID = query.categoryExternalID || '4';
 
   const data = await fetchApi(
-    `${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
+    `${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&hitsPerPage=9`
   );
+  // console.log('ServerSide Props', props);
 
   return {
     props: {
